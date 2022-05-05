@@ -3,6 +3,27 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
+import React, { FC, useEffect, useState } from "react";
+
+const CalendarWrapper: FC = () => {
+  const [showChild, setShowChild] = useState(false);
+  useEffect(() => {
+    setShowChild(true);
+  }, []);
+
+  if (!showChild) {
+    return null;
+  }
+
+  return (
+    <div
+      style={{ width: "40vw" }}
+      className="bokunWidget"
+      data-src="https://widgets.bokun.io/online-sales/011d63dd-940e-48b9-84b2-60140fa46dac/experience-calendar/690816"
+    ></div>
+  );
+};
+
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
@@ -44,6 +65,7 @@ const Home: NextPage = () => {
           >
             <Link href="/productpage">Go to ProductPage.</Link>
           </div>
+
           <button
             className="bokunButton"
             //id="bokun_cab0f5b1_b4ed_4043_9a31_6658ff7c332d" only for button style
@@ -53,7 +75,43 @@ const Home: NextPage = () => {
             <p>Book my tour with Bókun</p>
           </button>
         </div>
+        <div
+          style={{
+            display: "flex",
 
+            alignItems: "center",
+            flexDirection: "column",
+            justifyContent: "space-around",
+            height: "200px",
+            padding: "20px",
+            margin: "20px",
+            borderRadius: "6px",
+            backgroundColor: "orange",
+          }}
+        >
+          TRY THE CALENDAR HERE ON THE INDEX PAGE.
+          <br />
+          YOU WILL SEE THAT IT WORKS HERE BUT NOT
+          <br />
+          WHEN YOU NAVIGATE TO A SUBROUTE.
+          <div
+            style={{
+              borderRadius: "20px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "50px",
+              padding: "4px",
+              width: "200px",
+              marginBottom: "20px",
+
+              backgroundColor: "yellow",
+            }}
+          >
+            <Link href="/try-calendar-widget">Go to Calendar subpage.</Link>
+          </div>
+        </div>
+        <CalendarWrapper />
         <p className={styles.description}>
           Get started by editing{" "}
           <code className={styles.code}>pages/index.tsx</code>
